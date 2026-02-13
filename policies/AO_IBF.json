@@ -1,0 +1,40 @@
+{
+  "policy_version": "2026-02-13",
+  "country_code": "AO",
+  "product_type": "IBF",
+  "windows": {"lookback_invoices_months": 12, "lookback_bank_months": 6, "min_data_months": 3},
+  "bounds": {
+    "ltv_pct": {"min": 0.30, "max": 0.75},
+    "tenor_days": {"min": 30, "max": 150},
+    "sweep_pct": {"min": 0.10, "max": 0.70},
+    "rate_apr": {"min": 0.16, "max": 0.55}
+  },
+  "capacity": {
+    "limit_capacity_multiplier_max": 0.8,
+    "volatility_haircut_curve": {"family": "logistic", "a": 5.0, "b": 0.4}
+  },
+  "risk_weights": {
+    "cash_realization": 0.20,
+    "inflow_volatility": 0.20,
+    "supplier_concentration": 0.20,
+    "reversal_rate_sales": 0.10,
+    "registry": 0.20,
+    "data_quality": 0.10
+  },
+  "curves": {
+    "ltv": {"family": "logistic", "a": 6.0, "b": 0.5},
+    "tenor": {"family": "logistic", "a": 5.0, "b": 0.55},
+    "sweep": {"family": "logistic", "a": 6.0, "b": 0.5},
+    "rate": {"family": "logistic", "a": 5.5, "b": 0.5}
+  },
+  "inventory_freshness_half_life_days": 60,
+  "registry": {
+    "severity_map": {"none": 0.0, "unknown": 0.5, "receivables": 0.7, "inventory": 0.7, "all_assets": 0.9},
+    "multipliers": {"limit": {"min": 0.3, "max": 1.0}, "ltv": {"min": 0.4, "max": 1.0}},
+    "min_sweep_by_severity": [{"severity_gte": 0.7, "min_sweep": 0.35}, {"severity_gte": 0.9, "min_sweep": 0.45}],
+    "hard_reject_conflict": true
+  },
+  "normalization": {"mode": "auto", "cohort_required_n": 200},
+  "portfolio_caps": {"borrower_exposure_max": 0.05, "obligor_exposure_max": 0.10},
+  "manual_review": {"exposure_over": 100000, "registry_unavailable_over": 50000}
+}
